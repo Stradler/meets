@@ -1,0 +1,29 @@
+<div id="sign-in-page">
+  <div class="logo">
+    <img class="sign-in-logo" src='../../assets/images/logo.png'>
+  </div>
+  <form>
+    <div id="login-with">
+      <label class="blue"><input type="radio" name="toggle" value="email" checked="true" (change)="changeLoginType($event)"><span>Email</span></label>
+      <label class="blue"><input type="radio" name="toggle" value="phone" (change)="changeLoginType($event)"><span>Phone</span></label>
+    </div>
+    <div class="input-fields">
+      <input type="text" placeholder="enter your {{loginType}}">
+      <input type="password" placeholder="Password">
+    </div>
+    <div class="reset-pass-link">
+      <a class="pass-reset-link" href="#">Forgot your Password?</a>
+    </div>
+    <button type="button" class="login-button">Login</button>
+  </form>
+  <div class="social-media">
+    <p>or signup with your social account</p>
+    <div class="social-media-login">
+      <a><img src="../../assets/images/facebook-logo.png"></a>
+      <a><img src="../../assets/images/instagram-logo.png"></a>
+      <a><img src="../../assets/images/vk-logo.png"></a>
+    </div>
+    <p>Don't have an account? <a href="#">Create now</a></p>
+    <p><a href="#">Skip ></a></p>
+  </div>
+</div>
