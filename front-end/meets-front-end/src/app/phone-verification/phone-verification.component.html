@@ -1,0 +1,35 @@
+<div id="container">
+  <div id="body">
+    <div class="logo">
+      <img class="sign-in-logo" src='../../assets/images/logo.png'>
+    </div>
+    <form>
+      <h3>Enter your Verification Code</h3>
+      <p class="grey">We have sent a five-digit code to your phone</p>
+      <div class="verification-code">
+        <input type="text">
+        <input type="text">
+        <input type="text">
+        <input type="text">
+        <input type="text">
+      </div>
+      <ng-container *ngIf="(timer === 0 ); then resend else countdown"></ng-container>
+      <ng-template #countdown>
+        <p class="timer">00:{{timer}}</p>
+        <span class="grey">Resend code</span>
+      </ng-template>
+      <ng-template #resend>
+        <p class="timer"><a (click)="reSend($event)"><i class = material-icons>replay</i></a></p>
+        <a>Resend code</a>
+      </ng-template>
+      <div>
+        <button type="button" class="login-button" (click)="nextStep($event)">Next</button>
+      </div>
+
+    </form>
+  </div>
+  <div class="footer">
+    <p>Already have an account? <a routerLink="/login">Login</a></p>
+    <p><a routerLink="">Cancel</a></p>
+  </div>
+</div>

@@ -1,0 +1,42 @@
+<div id="container">
+  <div id="body">
+    <div class="logo">
+      <img class="sign-in-logo" src='../../assets/images/logo.png'>
+    </div>
+    <form>
+      <div class="switch-field">
+        <input type="radio" id="switch_left" name="switch_2" value="email" checked (change)="changeRegistrationType($event)"/>
+        <label for="switch_left"><p><i class="material-icons">mail</i><span>Email</span></p></label>
+        <input type="radio" id="switch_right" name="switch_2" value="phone" (change)="changeRegistrationType($event)"/>
+        <label for="switch_right"><p><i class="material-icons">phone</i><span>Phone</span></p></label>
+      </div>
+      <ng-container *ngIf="(registrationWith === 'email'); then emailblock; else phoneblock"></ng-container>
+      <ng-template #emailblock>
+        <div class="input-fields">
+          <input type="text" placeholder="Enter your email">
+          <input type="password" placeholder="Password">
+          <input type="password" placeholder="Confirm password">
+        </div>
+      </ng-template>
+      <ng-template #phoneblock>
+        <div class="input-phone">
+          <select>
+            <option>7</option>
+            <option>375</option>
+            <option>380</option>
+          </select>
+          <input type="tel" placeholder="Enter your phone">
+        </div>
+      </ng-template>
+
+      <div>
+        <button type="button" class="login-button" (click)="nextStep($event)">Next</button>
+      </div>
+
+    </form>
+  </div>
+  <div class="footer">
+    <p>Already have an account? <a routerLink="/login">Login</a></p>
+    <p><a routerLink="">Cancel</a></p>
+  </div>
+</div>
