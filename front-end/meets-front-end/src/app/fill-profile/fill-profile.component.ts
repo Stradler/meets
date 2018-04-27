@@ -11,14 +11,10 @@ export class FillProfileComponent implements OnInit {
   step = 1;
   gender = '';
   progress = (this.step*100)/this.totalSteps;
-  imgPath = "../../assets/images/male.png";
-
-  aa() {
-    return this.imgPath;
-  }
+  file = "../../assets/images/male.png";
 
   dd($event) {
-    console.log(this.imgPath);
+    console.log(this.file);
   }
 
   changeGender($event) {
@@ -32,7 +28,16 @@ export class FillProfileComponent implements OnInit {
     console.log(this.progress)
   }
 
+  handleFileInput(files: FileList) {
+    let file = files.item(0);
+    console.log(this.file);
+    let reader: FileReader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = (event: Event) => {
+      this.file = reader.result;
+    }
 
+  }
 
   constructor() {
     this.nextStep = this.nextStep.bind(this);
