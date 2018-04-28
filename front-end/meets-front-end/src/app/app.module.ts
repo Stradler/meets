@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
+import {FormsModule} from "@angular/forms";
 
 import { RouterModule, Routes } from '@angular/router';
 
@@ -15,6 +16,8 @@ import { PhoneVerificationComponent } from './phone-verification/phone-verificat
 import { FillProfileComponent } from './fill-profile/fill-profile.component';
 
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import {UserService} from "./user.service";
+
 
 
 const routes: Routes = [
@@ -39,7 +42,11 @@ const routes: Routes = [
     BrowserAnimationsModule,
     MatProgressBarModule,
     HttpClientModule,
+    FormsModule,
     RouterModule.forRoot(routes),
+  ],
+  providers: [
+    UserService,
   ],
   bootstrap: [AppComponent],
 

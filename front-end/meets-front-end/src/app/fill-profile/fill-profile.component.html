@@ -28,7 +28,7 @@
         </div>
         <div class="location">
           <h3>Your Location</h3>
-          <input type="text" placeholder="Enter your Town">
+          <input type="text" [(ngModel)] = "user.location" placeholder="Enter your Town">
         </div>
         <div>
           <button type="button" class="login-button" (click)="nextStep($event)">Next</button>
@@ -40,7 +40,7 @@
         </div>
         <div class="location">
           <h3>What's your Name?</h3>
-          <input type="text" placeholder="Enter your Name">
+          <input type="text" [(ngModel)] = "user.name" placeholder="Enter your Name">
         </div>
         <div>
           <button type="button" class="login-button" (click)="nextStep($event)">Next</button>
@@ -52,7 +52,7 @@
         </div>
         <div class="location">
           <h3>What's your Date of Birth?</h3>
-          <input type="date">
+          <input type="date" [(ngModel)] = "user.date_of_birth">
         </div>
         <div>
           <button type="button" class="login-button" (click)="nextStep($event)">Next</button>
@@ -65,12 +65,12 @@
         <div class="location">
           <h3>Enter your Phone Number</h3>
           <div class="input-phone">
-            <select>
+            <select [(ngModel)] = "user.phone_code">
               <option>7</option>
               <option>375</option>
               <option>380</option>
             </select>
-            <input type="tel" placeholder="Enter your phone">
+            <input type="tel" [(ngModel)] = "user.phone_number" placeholder="Enter your phone">
           </div>
           <p class="grey">Phone number is required to confirm your Real status.
             This will give you an ability to exchange contacts safely with other members.
@@ -100,7 +100,7 @@
 
         </div>
         <div>
-          <button type="button" class="login-button" (click)="dd($event)">Register</button>
+          <button type="button" class="login-button" (click)="register($event)">Register</button>
         </div>
       </div>
     </div>
