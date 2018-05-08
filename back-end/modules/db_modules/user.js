@@ -1,6 +1,7 @@
 const pool = require('./db_config');
 
 function insertUser(user) {
+    console.log(user);
     return new Promise(function (resolve, reject) {
         pool.getConnection(function (err, connection) {
             connection.query('INSERT INTO users SET ?', user, function (error, results, fields) {

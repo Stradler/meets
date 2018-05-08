@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
-import {FormsModule} from "@angular/forms";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
 import { RouterModule, Routes } from '@angular/router';
 
@@ -17,14 +17,22 @@ import { FillProfileComponent } from './fill-profile/fill-profile.component';
 
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import {UserService} from "./user.service";
+import { ProfileEditComponent } from './profile-edit/profile-edit.component';
 
-
+import {MatSelectModule} from '@angular/material/select';
+import {MatInputModule} from '@angular/material/input';
+import {MatButtonModule} from '@angular/material/button';
+import {MatDividerModule} from '@angular/material/divider';
+import {MatChipsModule} from '@angular/material/chips';
+import {MatIconModule} from '@angular/material/icon';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
 
 const routes: Routes = [
   { path: 'login', component: LoginFormComponent },
   { path: 'registration', component: EmailRegistrationComponent },
   { path: 'phone-verification', component: PhoneVerificationComponent},
   { path: 'fill-profile', component: FillProfileComponent },
+  { path: 'edit-profile', component: ProfileEditComponent },
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: '**', component: LoginFormComponent}
 ];
@@ -36,13 +44,22 @@ const routes: Routes = [
     EmailRegistrationComponent,
     PhoneVerificationComponent,
     FillProfileComponent,
+    ProfileEditComponent,
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     MatProgressBarModule,
+    MatSelectModule,
+    MatInputModule,
+    MatButtonModule,
+    MatDividerModule,
+    MatChipsModule,
+    MatIconModule,
+    MatAutocompleteModule,
     HttpClientModule,
     FormsModule,
+    ReactiveFormsModule,
     RouterModule.forRoot(routes),
   ],
   providers: [

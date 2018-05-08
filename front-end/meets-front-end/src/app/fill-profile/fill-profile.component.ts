@@ -56,11 +56,10 @@ export class FillProfileComponent implements OnInit {
 
   handleFileInput(files: FileList) {
     let file = files.item(0);
-    console.log(this.file);
+    this.user.photo = files.item(0);
     let reader: FileReader = new FileReader();
     reader.readAsDataURL(file);
     reader.onload = (event: Event) => {
-      this.user.photo = reader.result;
       this.file = reader.result;
     }
 
@@ -74,3 +73,5 @@ export class FillProfileComponent implements OnInit {
   }
 
 }
+
+

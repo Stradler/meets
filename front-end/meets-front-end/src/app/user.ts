@@ -7,4 +7,15 @@ export class User {
   photo: string;
   password: string;
   email: string;
+
+  about:string;
+  interests: Array<object>;
+  languages: Array<object>;
+  height: number;
+  weight: number;
+  bodyType: string;
+  eyeColor: string;
+  hairColor: string;
+  smoking: string;
+  drinking: string;
 }

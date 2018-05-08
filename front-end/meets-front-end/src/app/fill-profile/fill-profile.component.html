@@ -84,25 +84,27 @@
         <div class="logo">
           <img class="sign-in-logo" src='../../assets/images/photo.png'>
         </div>
-        <div class="location">
-          <h3>Add Profile Photo</h3>
-          <div>
-            <div class="add-img-container">
-              <div>
-                <img id="photo" [src] = "file">
-              </div>
-              <div class="bottom-right">
-                <input class="inputfile" type="file" id="file" name="file" (change)="handleFileInput($event.target.files)"/>
-                <label for="file"><img src="../../assets/images/add.png"></label>
+        <form name="photo-form" onsubmit="return false;">
+          <div class="location">
+            <h3>Add Profile Photo</h3>
+            <div>
+              <div class="add-img-container">
+                <div>
+                  <img id="photo" [src] = "file">
+                </div>
+                <div class="bottom-right">
+                  <input class="inputfile" type="file" id="file" name="photo" (change)="handleFileInput($event.target.files)"/>
+                  <label for="file"><img src="../../assets/images/add.png"></label>
+                </div>
               </div>
             </div>
           </div>
-
-        </div>
-        <div>
-          <button type="button" class="login-button" (click)="register($event)">Register</button>
-        </div>
+          <div>
+            <button type="button" class="login-button" (click)="register($event)">Register</button>
+          </div>
+        </form>
       </div>
+
     </div>
     <!--</div>-->
     <!--<div class="logo">-->

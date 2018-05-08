@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { User} from "./user";
+import { User } from "./user";
 import {HttpClient, HttpErrorResponse, HttpHeaders} from '@angular/common/http';
 import {Observable} from "rxjs/Observable";
 
@@ -26,9 +26,12 @@ export class UserService {
 
   private usersUrl = 'http://localhost:3000/users';
 
-  postUser(newUser:User): void {console.log(`${BASE_URL}/users`);
+  postUser(newUser): void {console.log(`${BASE_URL}/users`);
   console.log(newUser);
-    this.http.post (`${BASE_URL}/users`, newUser, httpOptions)
+    var formData = new FormData();
+    formData.append('photo', newUser.photo);
+    formData.append('data', JSON.stringify(newUser));
+    this.http.post (`${BASE_URL}/users`, formData)
       .subscribe(
         data => {console.log(data);},
         err=> console.log(err));
