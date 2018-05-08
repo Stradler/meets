@@ -11,14 +11,22 @@
         <label for="switch_right"><p><i class="material-icons">phone</i><span>Phone</span></p></label>
       </div>
 
-      <div class="input-fields">
-        <input type="text" placeholder="Enter your {{loginType}}">
-        <input type="password" placeholder="Password">
-      </div>
+      <ng-container *ngIf="loginType === 'email'; then emailLogin; else phoneLogin">sdsdsdsdsdsdsdsdsdsdsds</ng-container>
+      <ng-template #emailLogin>
+        <div class="input-fields">
+          <input type="text" placeholder="Enter your email" name="email" [(ngModel)] = 'email'>
+          <input type="password" placeholder="Password" name="password" [(ngModel)] = 'password'>
+        </div>
+      </ng-template>
+      <ng-template #phoneLogin>
+        <div class="input-fields">
+          <input type="text" placeholder="Enter your phone" name="phone" [(ngModel)] = 'phone'>
+        </div>
+      </ng-template>
       <div class="reset-pass-link">
         <a href="#">Forgot your Password?</a>
       </div>
-      <button type="button" class="login-button">Login</button>
+      <button type="button" class="login-button" (click)="login()">Login</button>
     </form>
     <div class="social-media">
       <p class="line-around">or signup with your social account</p>

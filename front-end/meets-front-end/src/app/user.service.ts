@@ -26,6 +26,19 @@ export class UserService {
 
   private usersUrl = 'http://localhost:3000/users';
 
+
+  loginWithEmail(userLoginData) {
+    console.log(userLoginData);
+    this.http.post(`${BASE_URL}/login`,userLoginData)
+      .subscribe(
+        data => {
+          console.log(data);
+          localStorage.setItem('access-token', JSON.stringify(data));
+          },
+        error => { console.log(error);},
+      )
+  }
+
   postUser(newUser): void {console.log(`${BASE_URL}/users`);
   console.log(newUser);
     var formData = new FormData();
@@ -33,8 +46,12 @@ export class UserService {
     formData.append('data', JSON.stringify(newUser));
     this.http.post (`${BASE_URL}/users`, formData)
       .subscribe(
-        data => {console.log(data);},
-        err=> console.log(err));
+        data => {
+          console.log(data);
+          },
+        err => {
+          console.log(err)
+        });
   }
 
 }

@@ -35,12 +35,12 @@ const upload = multer({
 const verificationLink = 'http://127.0.0.1:3000/users/verification';
 let uuid = null;
 
-router.use('/', function (req, res,next){
-    res.header('Access-Control-Allow-Origin', '*');
-    res.header('Access-Control-Allow-Headers', '*');
-    res.header('Access-Control-Allow-Methods', '*');
-    next();
-});
+// router.use('/', function (req, res,next){
+//     res.header('Access-Control-Allow-Origin', '*');
+//     res.header('Access-Control-Allow-Headers', '*');
+//     res.header('Access-Control-Allow-Methods', '*');
+//     next();
+// });
 
 router.post('/', upload.single('photo'), function (req, res) {
     uuid = uuidv4();
@@ -55,7 +55,7 @@ router.post('/', upload.single('photo'), function (req, res) {
         .then(function (result) {
             console.log(result, uuid, creationDate);
             user.createEmailUuid(result, uuid, creationDate);
-            res.status(200).send("success");
+            res.status(200).send({ msg: "success" });
             mailer(verificationLink + '?uuid=' + uuid);
 
 
