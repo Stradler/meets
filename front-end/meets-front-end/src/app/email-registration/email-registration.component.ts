@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
+import {UserService} from "../user.service";
 
 @Component({
   selector: 'app-email-registration',
@@ -11,8 +12,13 @@ export class EmailRegistrationComponent implements OnInit {
 
   registrationWith = 'email';
 
+  email = null;
+  password = null;
+  phone = null;
+
   constructor(private route: ActivatedRoute,
-              private router: Router) { }
+              private router: Router,
+              private userService: UserService) { }
 
   changeRegistrationType($event) {
     this.registrationWith = $event.target.value;
@@ -23,6 +29,9 @@ export class EmailRegistrationComponent implements OnInit {
     if (this.registrationWith === 'phone') {
       this.router.navigate(['/phone-verification'])
     } else {
+      console.log(this.userService.user);
+      this.userService.user.email = this.email;
+      this.userService.user.password = this.password;
       this.router.navigate(['/fill-profile'])
     }
 

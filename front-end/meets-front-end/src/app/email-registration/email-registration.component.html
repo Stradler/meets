@@ -13,8 +13,8 @@
       <ng-container *ngIf="(registrationWith === 'email'); then emailblock; else phoneblock"></ng-container>
       <ng-template #emailblock>
         <div class="input-fields">
-          <input type="text" placeholder="Enter your email">
-          <input type="password" placeholder="Password">
+          <input type="text" placeholder="Enter your email" name = "email" [(ngModel)] = "email">
+          <input type="password" placeholder="Password"  name = "password" [(ngModel)] = "password">
           <input type="password" placeholder="Confirm password">
         </div>
       </ng-template>

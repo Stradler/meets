@@ -1,0 +1,176 @@
+<div id="container">
+  <div class="edit-header">
+    <a href="#" style="color: #fff"><i class="material-icons">keyboard_arrow_left</i></a>
+    <h4>Edit Profile</h4>
+    <a href="#">Preview</a>
+  </div>
+
+  <div class="edit-avatar">
+    <img src="../../assets/images/blacksquare.jpg">
+  </div>
+
+  <div class="photo-gallery">
+    <img src="../../assets/images/blacksquare.jpg">
+    <img src="../../assets/images/blacksquare.jpg">
+    <img src="../../assets/images/blacksquare.jpg">
+    <img src="../../assets/images/blacksquare.jpg">
+    <a href="#"><img src="../../assets/images/blacksquare.jpg"></a>
+  </div>
+
+  <mat-divider></mat-divider>
+
+  <div class="name">
+    <h4>NAME</h4>
+    <!--<a href="#">Nicholas, 30 ></a>-->
+    <mat-divider></mat-divider>
+    <mat-form-field class="example-full-width right" floatLabel="never">
+      <input id="dfdf" matInput placeholder="gbggh" value="">
+    </mat-form-field>
+  </div>
+
+  <mat-divider></mat-divider>
+
+  <div class="about">
+    <h4>ABOUT ME</h4>
+    <mat-form-field class="example-full-width" floatLabel="never">
+      <textarea  matInput placeholder="gbggh" [(ngModel)] = "aboutMe"></textarea>
+    </mat-form-field>
+    <!--<p>-->
+      <!--Do you know one of the key secrets of success is - what-->
+      <!--makes people successful in business, sport or any other.-->
+    <!--</p>-->
+  </div>
+
+  <mat-divider></mat-divider>
+
+  <div class="interests">
+    <h4>INTERESTS</h4>
+    <mat-form-field class="demo-chip-list">
+      <mat-chip-list #chipList>
+        <mat-chip
+          *ngFor="let interest of selectedInterests"
+          [selectable]="selectable"
+          [removable]="removable"
+          (remove)="remove(interest)">
+          {{interest.name}}
+          <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+        </mat-chip>
+        <input
+          placeholder="Add interest"
+          #interestInput
+          [formControl]="interestControl"
+          [matAutocomplete]="auto"
+          [matChipInputFor]="chipList"
+          [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+          [matChipInputAddOnBlur]="addOnBlur"
+          (matChipInputTokenEnd)="add($event)"
+        />
+      </mat-chip-list>
+      <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+        <mat-option *ngFor="let interest of filteredInterests | async" [value]="interest.name">
+          {{ interest.name }}
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+  </div>
+
+  <mat-divider></mat-divider>
+
+  <div class="info">
+    <div>
+      <h4>LANGUAGE</h4>
+      <!--<a href="#">Portuguese, English ></a>-->
+      <mat-form-field class="right" floatLabel="never">
+        <mat-select placeholder="Select language" [formControl]="languages" multiple>
+          <mat-option *ngFor="let language of languageList" [value]="language.id">{{language.name}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <mat-divider></mat-divider>
+
+    <div>
+      <h4>HEIGHT</h4>
+      <!--<a href="#">182 ></a>-->
+      <mat-form-field class="example-full-width right" floatLabel="never">
+        <input matInput type="number" class="right" placeholder="your height" [(ngModel)] = "userData.height">
+      </mat-form-field>
+    </div>
+
+    <mat-divider></mat-divider>
+
+    <div>
+      <h4>WEIGHT</h4>
+      <!--<a href="#">74 ></a>-->
+      <mat-form-field class="example-full-width right" floatLabel="never">
+        <input matInput type="number" class="right" placeholder="your weight" [(ngModel)] = "userData.weight">
+      </mat-form-field>
+    </div>
+
+    <mat-divider></mat-divider>
+
+    <div>
+      <h4>BODY TYPE</h4>
+      <!--<a href="#">Athletic ></a>-->
+      <mat-form-field floatLabel="never" class="right">
+        <mat-select [(value)] = "userData.body_type_id" placeholder = "body type">
+          <mat-option *ngFor="let bodyType of bodyTypeList" [value]="bodyType.id">{{bodyType.name}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <p>{{userData.body_type_id}}</p>
+    </div>
+
+    <mat-divider></mat-divider>
+
+    <div>
+      <h4>EYE COLOR</h4>
+      <!--<a href="#">Blue ></a>-->
+      <mat-form-field floatLabel="never" class="right">
+        <mat-select [(value)] = "userData.eye_color_id" placeholder="eye color">
+          <mat-option *ngFor="let eyeColor of eyeColorList" [value]="eyeColor.id">{{eyeColor.name}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <p>{{userData.eye_color_id}}</p>
+    </div>
+
+    <mat-divider></mat-divider>
+
+    <div>
+      <h4>HAIR COLOR</h4>
+      <!--<a href="#">Dark blond ></a>-->
+      <mat-form-field floatLabel="never" class="right">
+        <mat-select [(value)] = "userData.hair_color_id" placeholder="Hair color">
+          <mat-option *ngFor="let hairColor of hairColorList" [value]="hairColor.id">{{hairColor.name}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <p>{{userData.hair_color_id}}</p>
+    </div>
+
+    <mat-divider></mat-divider>
+
+    <div>
+      <h4>SMOKING</h4>
+      <!--<a href="#">i don't like it ></a>-->
+      <mat-form-field floatLabel="never" class="right">
+        <mat-select [(value)] = "userData.smoking_id" placeholder="Smoking">
+          <mat-option *ngFor="let smoking of smokingList" [value]="smoking.id">{{smoking.name}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <p>{{userData.smoking_id}}</p>
+    </div>
+
+    <mat-divider></mat-divider>
+
+    <div>
+      <h4>DRINKING</h4>
+      <!--<a href="#">I don't drink ></a>-->
+      <mat-form-field floatLabel="never" class="right">
+        <mat-select [(value)] = "userData.drinking_id" placeholder="Drinking">
+          <mat-option *ngFor="let drinking of drinkingList" [value]="drinking.id">{{drinking.name}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <p>{{userData.drinking_id}}</p>
+    </div>
+  </div>
+  <button (click)="log()">Save</button>
+</div>

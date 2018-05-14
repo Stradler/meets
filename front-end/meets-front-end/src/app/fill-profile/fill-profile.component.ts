@@ -21,8 +21,6 @@ export class FillProfileComponent implements OnInit {
     phone_code: null,
     phone_number: null,
     photo: null,
-    password: null,
-    email: null
   };
 
   dd($event) {
@@ -41,7 +39,6 @@ export class FillProfileComponent implements OnInit {
 
   register($event){
     console.log({...this.userService.user});
-    this.userService.user.email = this.user.email;
     this.userService.user.gender = this.user.gender;
     this.userService.user.name = this.user.name;
     console.log({...this.userService.user});
@@ -49,8 +46,6 @@ export class FillProfileComponent implements OnInit {
     this.userService.user.date_of_birth = this.user.date_of_birth;
     this.userService.user.phone_number = this.user.phone_code + this.user.phone_number;
     this.userService.user.photo = this.user.photo;
-    this.userService.user.password = this.user.password;
-
     this.userService.postUser(this.userService.user);
   }
 

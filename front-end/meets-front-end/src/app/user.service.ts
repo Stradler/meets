@@ -9,7 +9,7 @@ import {logWarnings} from "protractor/built/driverProviders";
 
 const httpOptions = {
   headers: new HttpHeaders({
-    'Content-Type':  'application/json',
+    'id': '44'
   })
 };
 
@@ -26,7 +26,6 @@ export class UserService {
 
   private usersUrl = 'http://localhost:3000/users';
 
-
   loginWithEmail(userLoginData) {
     console.log(userLoginData);
     this.http.post(`${BASE_URL}/login`,userLoginData)
@@ -41,7 +40,7 @@ export class UserService {
 
   postUser(newUser): void {console.log(`${BASE_URL}/users`);
   console.log(newUser);
-    var formData = new FormData();
+    let formData = new FormData();
     formData.append('photo', newUser.photo);
     formData.append('data', JSON.stringify(newUser));
     this.http.post (`${BASE_URL}/users`, formData)
@@ -52,6 +51,14 @@ export class UserService {
         err => {
           console.log(err)
         });
+  }
+
+  getUserInfo(): Observable<any> {
+    return this.http.get(`${BASE_URL}/users/edit-profile`, httpOptions);
+  }
+
+  getInputsData(): Observable<any> {
+    return this.http.get(`${BASE_URL}/users/inputs-data`);
   }
 
 }
