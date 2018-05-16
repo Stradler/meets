@@ -118,6 +118,7 @@ router.get('/edit-profile', (req, res) => {
        'users.about, ' +
        'users.height, ' +
        'users.weight, ' +
+       'users.photo, ' +
        'users.body_type as body_type_id, ' +
        'body_types.name as body_type_name, ' +
        'users.eye_color as eye_color_id, ' +

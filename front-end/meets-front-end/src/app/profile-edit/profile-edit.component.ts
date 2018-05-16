@@ -18,68 +18,22 @@ import {UserService} from "../user.service";
 })
 export class ProfileEditComponent implements OnInit {
 
-  visible: boolean = true;
-  selectable: boolean = true;
-  removable: boolean = true;
-  addOnBlur: boolean = false;
-  separatorKeysCodes = [ENTER, COMMA];
-  interestControl = new FormControl();
-  filteredInterests: Observable<any[]>;
-
-  selectedInterests = [];
-  interests = [];
-
   @ViewChild('interestInput') interestInput: ElementRef;
 
-  constructor(private userService:UserService) {
-    this.filteredInterests = this.interestControl.valueChanges.pipe(
-      startWith(null),
-      map((interest: string | null) => interest ? this.filter(interest) : this.interests.slice()));
-  }
-
-  add(event: MatChipInputEvent): void {
-
-    const input = event.input;
-    const value = event.value;
-        // Add our fruit
-    if ((value || '').trim()) {
-      this.selectedInterests.push({ name: value.trim() });
-      console.log(value);
-    }
-    if (input) {
-      input.value = '';
-    }
-  }
-
-  remove(interest: any): void {
-    const index = this.selectedInterests.indexOf(interest);
-
-    if (index >= 0) {
-      this.selectedInterests.splice(index, 1);
-    }
-  }
-
-  filter(name: string) {
-    return this.interests.filter(interest =>
-      interest.name.toLowerCase().indexOf(name.toLowerCase()) === 0);
-  }
-
-  selected(event: MatAutocompleteSelectedEvent): void {
-    this.selectedInterests.push({ name: event.option.viewValue });
-    console.log(event.option.viewValue);
-    this.interestInput.nativeElement.value = '';
-  }
+  constructor(private userService:UserService) {}
 
   userData = {};
-
-  languages = new FormControl([1,2,3]);
+  userLanguages = [];
+  userInterests = [];
+  languages = new FormControl();
+  interests = new FormControl();
+  interestList = [];
   languageList = [];
   bodyTypeList = [];
   eyeColorList = [];
   hairColorList = [];
   smokingList = [];
   drinkingList = [];
-  aboutMe = '';
 
 
 
@@ -91,8 +45,15 @@ export class ProfileEditComponent implements OnInit {
   smoking = null;
   drinking = null;
 
+  findInterestById = (id) => {
+    const interest = this.interestList.find(interest => interest.id === id);
+    return interest ? interest.name : '';
+  };
   log = () => {
-    console.log(this.selectedInterests,this.languages.value, this.aboutMe,this.userService.user);
+    console.log(
+      this.userData
+    );
+
     this.userService.user.height = this.height;
     this.userService.user.weight = this.weight;
     this.userService.user.bodyType = this.selectedBodyType;
@@ -100,7 +61,6 @@ export class ProfileEditComponent implements OnInit {
     this.userService.user.hairColor = this.selectedHairColor;
     this.userService.user.smoking = this.smoking;
     this.userService.user.drinking = this.drinking;
-
   };
 
   ngOnInit() {
@@ -108,7 +68,7 @@ export class ProfileEditComponent implements OnInit {
       .subscribe(
         data => {
           console.log(data);
-          this.interests = data.interest;
+          this.interestList = data.interest;
           this.languageList = data.language;
           this.bodyTypeList = data.body_type;
           this.eyeColorList = data.eye_color;
@@ -120,6 +80,13 @@ export class ProfileEditComponent implements OnInit {
               data => {
                 console.log(data);
                 this.userData = data;
+
+                this.userLanguages = this.userData.languages.map(lang => lang.id);
+                this.languages = new FormControl(this.userLanguages);
+
+                this.userInterests = this.userData.interests.map(inter => inter.id);
+                this.interests = new FormControl(this.userInterests);
+
               },
               error => {
                 console.log(error);
@@ -130,7 +97,6 @@ export class ProfileEditComponent implements OnInit {
           console.log(error);
         }
       )
-
   }
 
 }

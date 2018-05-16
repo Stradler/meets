@@ -24,7 +24,7 @@
     <!--<a href="#">Nicholas, 30 ></a>-->
     <mat-divider></mat-divider>
     <mat-form-field class="example-full-width right" floatLabel="never">
-      <input id="dfdf" matInput placeholder="gbggh" value="">
+      <input id="dfdf" matInput placeholder="gbggh" [(ngModel)] = "userData.name">
     </mat-form-field>
   </div>
 
@@ -33,7 +33,7 @@
   <div class="about">
     <h4>ABOUT ME</h4>
     <mat-form-field class="example-full-width" floatLabel="never">
-      <textarea  matInput placeholder="gbggh" [(ngModel)] = "aboutMe"></textarea>
+      <textarea  matInput placeholder="gbggh" [(ngModel)] = "userData.about"></textarea>
     </mat-form-field>
     <!--<p>-->
       <!--Do you know one of the key secrets of success is - what-->
@@ -45,33 +45,18 @@
 
   <div class="interests">
     <h4>INTERESTS</h4>
-    <mat-form-field class="demo-chip-list">
-      <mat-chip-list #chipList>
-        <mat-chip
-          *ngFor="let interest of selectedInterests"
-          [selectable]="selectable"
-          [removable]="removable"
-          (remove)="remove(interest)">
-          {{interest.name}}
-          <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
-        </mat-chip>
-        <input
-          placeholder="Add interest"
-          #interestInput
-          [formControl]="interestControl"
-          [matAutocomplete]="auto"
-          [matChipInputFor]="chipList"
-          [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-          [matChipInputAddOnBlur]="addOnBlur"
-          (matChipInputTokenEnd)="add($event)"
-        />
-      </mat-chip-list>
-      <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
-        <mat-option *ngFor="let interest of filteredInterests | async" [value]="interest.name">
-          {{ interest.name }}
-        </mat-option>
-      </mat-autocomplete>
-    </mat-form-field>
+    <div>
+      <div *ngFor="let interest of interests.value">{{findInterestById(interest)}}</div>
+    </div>
+
+      <mat-form-field class="right" floatLabel="never">
+        <mat-select placeholder="Add interest" [formControl]="interests" multiple>
+          <mat-select-trigger>
+            {{interests.value ? "Add interest" : ''}}
+          </mat-select-trigger>
+          <mat-option *ngFor="let interest of interestList" [value]="interest.id">{{interest.name}}</mat-option>
+        </mat-select>
+      </mat-form-field>
   </div>
 
   <mat-divider></mat-divider>

@@ -26,6 +26,9 @@ import {MatDividerModule} from '@angular/material/divider';
 import {MatChipsModule} from '@angular/material/chips';
 import {MatIconModule} from '@angular/material/icon';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import { WebsocketService } from './websocket.service';
+import { ChatService } from './chat.service';
+import { ChatRoomComponent } from './chat-room/chat-room.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginFormComponent },
@@ -33,6 +36,7 @@ const routes: Routes = [
   { path: 'phone-verification', component: PhoneVerificationComponent},
   { path: 'fill-profile', component: FillProfileComponent },
   { path: 'edit-profile', component: ProfileEditComponent },
+  { path: 'chat-room', component: ChatRoomComponent },
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: '**', component: LoginFormComponent}
 ];
@@ -45,6 +49,7 @@ const routes: Routes = [
     PhoneVerificationComponent,
     FillProfileComponent,
     ProfileEditComponent,
+    ChatRoomComponent,
   ],
   imports: [
     BrowserModule,
@@ -64,6 +69,8 @@ const routes: Routes = [
   ],
   providers: [
     UserService,
+    WebsocketService,
+    ChatService,
   ],
   bootstrap: [AppComponent],
 
